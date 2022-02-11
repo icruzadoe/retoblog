@@ -1,7 +1,9 @@
 package com.tarea.blogs.controllers;
 
 import com.tarea.blogs.enties.Author;
+import com.tarea.blogs.enties.Blog;
 import com.tarea.blogs.services.AuthorService;
+import com.tarea.blogs.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,21 +14,21 @@ import java.util.List;
 public class BlogController {
 
     @Autowired
-    private AuthorService authorService;
+    private BlogService blogService;
 
     @PostMapping
-    public Author save(@RequestBody Author author){
-        return this.authorService.save(author);
+    public Blog save(@RequestBody Blog blog){
+        return this.blogService.save(blog);
     }
 
     @GetMapping
-    public List<Author> findAll(){
+    public List<Blog> findAll(){
         System.out.println("call findALl");
-        return this.authorService.findAll();
+        return this.blogService.findAll();
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id){
-        this.authorService.delete(id);
+        this.blogService.delete(id);
     }
 }

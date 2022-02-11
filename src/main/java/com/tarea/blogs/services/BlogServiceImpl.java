@@ -35,11 +35,12 @@ public class BlogServiceImpl implements BlogService{
     @Override
     public Blog save(Blog blog) {
         var  blogActual = new Blog();
-        if(this.authorRepository.findCount(blog.getAuthor().getId()) == 3){
+
+        if(this.blogRespository.findCount(blog.getAuthor().getId()) == 2){
             blogActual.setMessage("Cuenta con el maximo de blogs");
             return blogActual;
         }else if(blog.getAuthor().getAge() < 18){
-            blogActual.setMessage("Tienes que tener mas de 18 años para tener un blog");
+            blogActual.setMessage("Tienes que tener mas de 18 años para publicar un blog");
             return blogActual;
         }
 
