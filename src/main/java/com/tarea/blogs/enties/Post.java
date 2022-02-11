@@ -22,10 +22,10 @@ public class Post {
     private String status;
     @Getter @Setter
     private String content;
-    /*
+
     @Getter @Setter
     @ManyToOne()
-    @JoinColumn(name = "author_id")
-    private Author author;
-    */
+    @JoinColumn(name = "blog_id")
+    private Blog blog;
+
 }

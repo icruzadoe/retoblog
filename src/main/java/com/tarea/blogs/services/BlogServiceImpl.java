@@ -14,9 +14,6 @@ public class BlogServiceImpl implements BlogService{
     @Autowired
     private BlogRespository blogRespository;
 
-    @Autowired
-    private AuthorRepository authorRepository;
-
     @Override
     public List<Blog> findAll() {
         return this.blogRespository.findAll();
