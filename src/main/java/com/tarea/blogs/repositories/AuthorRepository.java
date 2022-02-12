@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author,Long>{
 
-    @Query("select count(a) from Author a where a.id =  ?1")
-    Integer findCount(Long id);
+
 }

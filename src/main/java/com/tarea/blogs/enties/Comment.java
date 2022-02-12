@@ -21,7 +21,7 @@ public class Comment {
     @Getter @Setter
     private String comment;
     @Getter @Setter
-    @ManyToOne()
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "post_id")
     private Post post;
 

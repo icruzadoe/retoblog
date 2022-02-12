@@ -22,7 +22,7 @@ public class Blog {
     @Getter @Setter
     private String status;
     @Getter @Setter
-    @ManyToOne()
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private Author author;
     @Getter @Setter

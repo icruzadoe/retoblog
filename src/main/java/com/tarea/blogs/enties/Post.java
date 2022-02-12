@@ -24,7 +24,7 @@ public class Post {
     private String content;
 
     @Getter @Setter
-    @ManyToOne()
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "blog_id")
     private Blog blog;
 
