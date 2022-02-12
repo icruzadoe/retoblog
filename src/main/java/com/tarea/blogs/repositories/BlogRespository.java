@@ -9,12 +9,14 @@ import java.util.List;
 
 @Repository
 public interface BlogRespository extends JpaRepository<Blog, Long> {
-
+    /*
     @Query("select count(b) from Blog b where b.author.id =  ?1")
     Integer findCount(Long id);
 
     @Query("select (b) from Blog b where b.author.id =  ?1")
     List<Blog> findAllBlogWithAuthor(Long id);
+
+     */
 
 
 

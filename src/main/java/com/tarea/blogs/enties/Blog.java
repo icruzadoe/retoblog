@@ -1,9 +1,11 @@
 package com.tarea.blogs.enties;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "blog")
@@ -22,10 +24,11 @@ public class Blog {
     @Getter @Setter
     private String status;
     @Getter @Setter
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "author_id")
-    private Author author;
-    @Getter @Setter
     private String message;
+    @Getter @Setter
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Post> posts;
+    @Getter @Setter
+    private Long id_author;
 
 }

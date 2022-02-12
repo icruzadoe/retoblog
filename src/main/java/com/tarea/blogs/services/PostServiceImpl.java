@@ -1,11 +1,13 @@
 package com.tarea.blogs.services;
 
+import com.tarea.blogs.enties.Blog;
 import com.tarea.blogs.enties.Post;
 import com.tarea.blogs.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -17,6 +19,8 @@ public class PostServiceImpl implements PostService{
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private BlogService blogService;
 
     @Override
     public List<Post> findAll() {
@@ -35,14 +39,26 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Post save(Post post) {
+        var postActual = new Post();
+        var blogActual = this.blogService.findById(post.getId_blog());
 
-        if(post.getBlog().getStatus().equals("activo")){
+        if(blogActual.getStatus().equals("activo")){
             post.setDate(this.getDate());
             post.setStatus("publicado");
-            return this.postRepository.save(post);
+            postActual =  this.postRepository.save(post);
+            var posts = blogActual.getPosts();
+            posts.add(postActual);
+            blogActual.setPosts(posts);
+            this.blogService.update(blogActual);
+            return postActual;
         }
 
         return null;
+    }
+
+    @Override
+    public void update(Post post) {
+        this.postRepository.save(post);
     }
 
     @Override

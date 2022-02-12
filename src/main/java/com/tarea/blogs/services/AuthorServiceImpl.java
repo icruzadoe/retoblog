@@ -1,6 +1,7 @@
 package com.tarea.blogs.services;
 
 import com.tarea.blogs.enties.Author;
+import com.tarea.blogs.enties.Blog;
 import com.tarea.blogs.repositories.AuthorRepository;
 import com.tarea.blogs.repositories.BlogRespository;
 import com.tarea.blogs.repositories.CommentRepository;
@@ -8,6 +9,7 @@ import com.tarea.blogs.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,13 +35,14 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public List<Author> findByName(String nombre) {
-        return null;
+    public Author findByName(String nombre) {
+        return this.authorRepository.findByName(nombre);
     }
 
     @Override
-    public Author save(Author author) {
-        return this.authorRepository.save(author);
+    public void save(Author author) {
+
+         this.authorRepository.save(author);
     }
 
     @Override

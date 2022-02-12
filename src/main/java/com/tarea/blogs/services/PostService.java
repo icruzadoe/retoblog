@@ -9,5 +9,6 @@ public interface PostService {
     Post findById(Long id);
     List<Post> findByName(String nombre);
     Post save(Post post);
+    void update(Post post);
     void delete(Long id);
 }

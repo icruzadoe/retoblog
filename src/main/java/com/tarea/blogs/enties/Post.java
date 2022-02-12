@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -22,10 +23,10 @@ public class Post {
     private String status;
     @Getter @Setter
     private String content;
-
     @Getter @Setter
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
+    private Long id_blog;
+    @Getter @Setter
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
 }

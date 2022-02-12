@@ -7,7 +7,7 @@ import java.util.List;
 public interface AuthorService {
     List<Author> findAll();
     Author findById(Long id);
-    List<Author> findByName(String nombre);
-    Author save(Author author);
+    Author findByName(String nombre);
+    void save(Author author);
     void delete(Long id);
 }

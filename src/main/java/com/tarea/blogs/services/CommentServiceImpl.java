@@ -1,6 +1,7 @@
 package com.tarea.blogs.services;
 
 import com.tarea.blogs.enties.Comment;
+import com.tarea.blogs.enties.Post;
 import com.tarea.blogs.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ public class CommentServiceImpl  implements CommentService{
 
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private PostService postService;
 
     @Override
     public List<Comment> findAll() {
@@ -30,8 +33,16 @@ public class CommentServiceImpl  implements CommentService{
 
     @Override
     public Comment save(Comment comment) {
-        if(comment.getPost().getStatus().equals("publicado")) {
-            return this.commentRepository.save(comment);
+        var commentActual = new Comment();
+        var postActual = this.postService.findById(comment.getId_post());
+
+        if(postActual.getStatus().equals("publicado")) {
+            commentActual = this.commentRepository.save(comment);
+            var comments = postActual.getComments();
+            comments.add(commentActual);
+            postActual.setComments(comments);
+            this.postService.update(postActual);
+            return commentActual;
         }
 
         return null;

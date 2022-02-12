@@ -9,5 +9,6 @@ public interface BlogService {
     Blog findById(Long id);
     List<Blog> findByName(String nombre);
     Blog save(Blog blog);
+    void update(Blog blog);
     void delete(Long id);
 }
